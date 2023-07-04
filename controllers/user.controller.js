@@ -31,21 +31,18 @@ exports.findById = async (req, res) => {
 }
 
 exports.update = async (req, res) => {
-    const userIdReq = req.params.userId
-
+    
     try{
-        const user = await User.findOneAndUpdate({
-            userId: userIdReq
-        }, {
-            userName: req.body.userName,
-            userStatus: req.body.userStatus ,
-            userType: req.body.userType
-        }).exec();
+       
+    let id = req.params.userId;
+    let updatedValue = req.body;
+    let user = await User.findOneAndUpdate(
+      { userId: id }, updatedValue);
 
         if(user){
-            return res.status(200).send({
-                message: "User updated successfully"
-            })
+            return res.status(200).send("user updated successfully");
+        } else {
+          return res.status(200).send("user not Found");
         }
     }catch(err){
         res.status(500).send({

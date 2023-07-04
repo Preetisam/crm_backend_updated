@@ -30,6 +30,15 @@ const userSchema = new mongoose.Schema({
         required: true,
         default: "PENDING"
     },
+    ticketsCreated: {
+        type: [mongoose.SchemaTypes.ObjectId],
+        ref: 'Ticket'
+
+    },
+    ticketsAssigned: {
+        type: [mongoose.SchemaTypes.ObjectId],
+        ref: 'Ticket'
+    },
     createdAt: {
         type: Date,
         immutable: true,

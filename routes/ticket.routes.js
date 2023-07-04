@@ -6,6 +6,8 @@ module.exports = function(app){
     app.put("/crm/api/v1/tickets/:id", [authJwt.verifyToken, verifyTicketRequestBody.validateTicketStatus], ticketController.updateTicket)
     app.get("/crm/api/v1/tickets", [authJwt.verifyToken], ticketController.getAllTickets)
     app.get("/crm/api/v1/tickets/:id", [authJwt.verifyToken], ticketController.getOneTicket)
+    app.put("/crm/api/v1/tickets/assignee/engineer", [authJwt.verifyToken, authJwt.isAdmin],ticketController.assigneeEngineer
+      );
 }
 
 //Two middleware functions

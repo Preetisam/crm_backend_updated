@@ -14,6 +14,10 @@ const ticketSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    comment: {
+        type: String,
+        default: 'We are working on It'
+      },
     status: {
         type: String,
         required: true,
