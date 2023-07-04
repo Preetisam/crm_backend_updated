@@ -12,7 +12,9 @@ const express = require('express');
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+
+// Allow requests from your frontend origin
+app.use(cors({ origin: 'http://localhost:3000' }));
 
 // Establish DB connection
 mongoose.connect(dbConfig.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -55,7 +57,7 @@ require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 require('./routes/ticket.routes')(app);
 
-// App (Server) to listen for HTTP requests at port 8080
+// App (Server) to listen for HTTP requests at the specified port
 app.listen(serverConfig.PORT, () => {
-  console.log('Application started on port 8080');
+  console.log('Application started on port', serverConfig.PORT);
 });
